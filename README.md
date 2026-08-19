@@ -1,60 +1,84 @@
 # Fiza Khan — Developer Portfolio
 
-A fully responsive form validation application built with **React + Vite** for the Neuron5Solutions internship program.
+A fully responsive file upload application with drag-and-drop, real-time preview, and backend storage built with **React + Vite + Express** for the Neuron5Solutions internship program.
 
 ---
 
-## 🌐 Week 3 · Part 1 — Forms, Validation & Real User Feedback
+## 🌐 Week 3 · Part 1 — File/Image Upload with Backend Storage
 
-This project demonstrates building a production-ready multi-field form with comprehensive validation and user feedback mechanisms.
+This project demonstrates building a production-ready file upload system with drag-and-drop, validation, progress tracking, and backend storage.
 
 ### Requirements
 
 | Requirement | Implementation |
 |------------|----------------|
-| **Multi-field form** | 6+ fields including text, email, dropdown, date picker, and file upload |
-| **Client-side validation** | Real-time field-specific error messages with clear feedback |
-| **Server-side validation** | Backend validation layer (never trust the frontend alone) |
-| **User feedback** | Success/error toast notifications after submission |
-| **Loading states** | Disabled submit button with loading indicator during requests |
-| **Accessibility** | ARIA labels, keyboard navigation, and screen reader support |
+| **Styled Upload UI** | Custom drag-and-drop zone with file picker (not bare browser input) |
+| **Upload Progress** | Real-time progress bar and preview before submission |
+| **Backend Storage** | Express server with Multer for local file storage |
+| **File Validation** | Type and size validation on frontend before upload |
+| **Display Uploaded File** | Image preview and download link after successful upload |
+| **User Feedback** | Success/error states with smooth animations |
 
 ### Features
 
-- ✅ **6+ Form Fields**: Full Name, Email, Phone, Country (dropdown), Birth Date (date picker), Profile Picture (file upload)
-- ✅ **Real-time Validation**: Field-level validation on blur with specific error messages
-- ✅ **Backend Integration**: Server-side validation with proper error handling
-- ✅ **Toast Notifications**: Success and error feedback banners
-- ✅ **Loading Indicators**: Disabled states and spinners during form submission
-- ✅ **Responsive Design**: Mobile-first approach with clean UI
-- ✅ **Error Handling**: Network errors, file size limits, and validation failures
+- ✅ **Drag & Drop**: Intuitive drag-and-drop zone with visual feedback
+- ✅ **File Preview**: Real-time image preview before upload
+- ✅ **Validation**: Client-side validation for file type (JPEG, PNG, GIF, WebP) and size (max 5MB)
+- ✅ **Progress Tracking**: Real-time upload progress bar with percentage
+- ✅ **Backend Integration**: Express server with Multer for secure file storage
+- ✅ **Success State**: Beautiful success screen with uploaded image display
+- ✅ **Download Link**: View full-size image in new tab
+- ✅ **Responsive Design**: Mobile-first approach with smooth animations
+- ✅ **Error Handling**: Clear error messages for validation failures and upload errors
 
 ---
 
 ## 🚀 Tech Stack
 
-- **Frontend**: React 19.2.7
-- **Build Tool**: Vite
-- **Styling**: CSS3
-- **Validation**: Custom validation logic (client + server)
+**Frontend:**
+- React 19.2.7
+- Vite (Build Tool)
+- CSS3 with animations
+
+**Backend:**
+- Node.js + Express
+- Multer (File upload middleware)
+- CORS enabled
 
 ---
 
 ## 📦 Installation & Setup
 
+### 1. Clone the repository
 ```bash
-# Clone the repository
 git clone https://github.com/Fizakhan10/Forms-Validation-.git
-
-# Navigate to project directory
 cd Forms-Validation-
+```
 
-# Install dependencies
+### 2. Install Frontend Dependencies
+```bash
 npm install
+```
 
-# Run development server
+### 3. Install Backend Dependencies
+```bash
+cd server
+npm install
+```
+
+### 4. Start the Backend Server
+```bash
+# From the server directory
+npm start
+```
+The server will run on `http://localhost:3000`
+
+### 5. Start the Frontend Development Server
+```bash
+# From the root directory
 npm run dev
 ```
+The frontend will run on `http://localhost:5173`
 
 ---
 
@@ -64,17 +88,95 @@ npm run dev
 Forms-Validation-/
 ├── src/
 │   ├── components/
-│   │   ├── Form.jsx          # Main form component
-│   │   ├── FormField.jsx     # Reusable field component
-│   │   ├── Toast.jsx         # Toast notification component
-│   │   └── LoadingSpinner.jsx
-│   ├── utils/
-│   │   └── validation.js     # Validation logic
-│   ├── App.jsx
-│   └── main.jsx
+│   │   ├── FileUpload.jsx        # Main upload component
+│   │   └── FileUpload.css        # Upload component styles
+│   ├── App.jsx                   # Main app component
+│   ├── App.css                   # App styles
+│   └── main.jsx                  # Entry point
+├── server/
+│   ├── server.js                 # Express backend server
+│   ├── package.json              # Backend dependencies
+│   ├── uploads/                  # Uploaded files storage
+│   └── .gitignore
 ├── public/
 └── package.json
 ```
+
+---
+
+## 🔌 API Endpoints
+
+### Upload File
+```
+POST http://localhost:3000/api/upload
+Content-Type: multipart/form-data
+
+Body: { file: [binary] }
+
+Response: {
+  success: true,
+  message: "File uploaded successfully",
+  fileUrl: "http://localhost:3000/uploads/filename-123456.jpg",
+  fileDetails: {
+    originalName: "image.jpg",
+    filename: "image-123456.jpg",
+    size: 245678,
+    mimetype: "image/jpeg"
+  }
+}
+```
+
+### Get All Files
+```
+GET http://localhost:3000/api/files
+
+Response: {
+  success: true,
+  count: 5,
+  files: [...]
+}
+```
+
+### Delete File
+```
+DELETE http://localhost:3000/api/files/:filename
+
+Response: {
+  success: true,
+  message: "File deleted successfully"
+}
+```
+
+---
+
+## ✨ Key Features Implementation
+
+### 1. Drag and Drop Zone
+- Visual feedback during drag (color change, scale animation)
+- Click to open file picker
+- Validates dropped files
+
+### 2. File Validation
+- **Allowed Types**: JPEG, PNG, GIF, WebP
+- **Max Size**: 5MB
+- Clear error messages for validation failures
+
+### 3. Upload Progress
+- XMLHttpRequest for progress tracking
+- Real-time progress bar (0-100%)
+- Smooth animations
+
+### 4. Backend Storage
+- Unique filename generation (timestamp + random ID)
+- File type validation on server
+- Size limit enforcement (5MB)
+- Serves uploaded files via static endpoint
+
+### 5. Success State
+- Animated success icon
+- Full-size image preview
+- Download/view link
+- Upload another file option
 
 ---
 
@@ -83,14 +185,22 @@ Forms-Validation-/
 **Program**: Neuron5Solutions Web Development Internship  
 **Week**: 3  
 **Part**: 1  
-**Task**: Forms, Validation & Real User Feedback  
+**Task**: File/Image Upload UI Connected to Backend Storage  
 **Developer**: Fiza Khan
 
 ---
 
 ## 📸 Screenshots
 
-_Screenshots will be added upon completion_
+_Screenshots and video demonstration will be added upon completion_
+
+### Video Demonstration Checklist:
+- [ ] Show drag-and-drop functionality
+- [ ] Upload a file and show progress
+- [ ] Display uploaded image in UI
+- [ ] Try invalid file type/size
+- [ ] Show error handling
+- [ ] Post on LinkedIn
 
 ---
 
@@ -98,6 +208,17 @@ _Screenshots will be added upon completion_
 
 - [Live Demo](#) _(Coming soon)_
 - [GitHub Repository](https://github.com/Fizakhan10/Forms-Validation-)
+- [LinkedIn Post](#) _(Coming soon)_
+
+---
+
+## 🚧 Future Enhancements
+
+- [ ] Cloudinary/S3 integration for cloud storage
+- [ ] Multiple file upload
+- [ ] Image compression before upload
+- [ ] File management dashboard
+- [ ] Upload history with thumbnails
 
 ---
 
