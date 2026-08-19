@@ -4,7 +4,7 @@ A fully responsive file upload application with drag-and-drop, real-time preview
 
 ---
 
-## 🌐 Week 3 · Part 1 — File/Image Upload with Backend Storage
+## 🌐 Week 4 · Part 1 — File/Image Upload UI Connected to Backend Storage
 
 This project demonstrates building a production-ready file upload system with drag-and-drop, validation, progress tracking, and backend storage.
 
@@ -51,8 +51,8 @@ This project demonstrates building a production-ready file upload system with dr
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/Fizakhan10/Forms-Validation-.git
-cd Forms-Validation-
+git clone https://github.com/Fizakhan10/UI-Connected-to-Backend.git
+cd UI-Connected-to-Backend
 ```
 
 ### 2. Install Frontend Dependencies
@@ -85,7 +85,7 @@ The frontend will run on `http://localhost:5173`
 ## 🎯 Project Structure
 
 ```
-Forms-Validation-/
+UI-Connected-to-Backend/
 ├── src/
 │   ├── components/
 │   │   ├── FileUpload.jsx        # Main upload component
@@ -183,7 +183,7 @@ Response: {
 ## 🎓 Internship Information
 
 **Program**: Neuron5Solutions Web Development Internship  
-**Week**: 3  
+**Week**: 4  
 **Part**: 1  
 **Task**: File/Image Upload UI Connected to Backend Storage  
 **Developer**: Fiza Khan
@@ -207,7 +207,7 @@ _Screenshots and video demonstration will be added upon completion_
 ## 🔗 Links
 
 - [Live Demo](#) _(Coming soon)_
-- [GitHub Repository](https://github.com/Fizakhan10/Forms-Validation-)
+- [GitHub Repository](https://github.com/Fizakhan10/UI-Connected-to-Backend)
 - [LinkedIn Post](#) _(Coming soon)_
 
 ---

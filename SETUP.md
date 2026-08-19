@@ -86,7 +86,7 @@ If you see a CORS error in the browser console:
 ## File Structure
 
 ```
-Forms-Validation-/
+UI-Connected-to-Backend/
 ├── src/                          # Frontend source
 │   ├── components/
 │   │   ├── FileUpload.jsx       # Main upload component
